@@ -1,0 +1,98 @@
+[
+    {
+        "id": "01",
+        "type": "text",
+        "label": "Function Name",
+        "placeHolder": "Name the function",
+        "initialValue": "",
+        "items": null,
+        "mandatory": true,
+        "modelGroup": "metadata",
+        "model": "name",
+        "validations": [
+            { "id": "reg01", "msg": "Valid characters are alphanumeric and hyphen", "regex": "^[A-Za-z0-9-]+$" },
+            { "id": "reg02", "msg": "Must start and end with alphanumeric", "regex": "^[A-Za-z0-9].*[A-Za-z0-9]$" },
+            { "id": "reg03", "msg": "Maximum length of 56 characters", "regex": "^.{1,56}$" }
+        ]
+    },
+    {
+        "id": "02",
+        "type": "textarea",
+        "label": "Description",
+        "placeHolder": "Write description here",
+        "initialValue": "",
+        "items": null,
+        "mandatory": false,
+        "modelGroup": "spec",
+        "model": "description",
+        "validations": null
+    },
+    {
+        "id": "03",
+        "type": "select",
+        "label": "Runtime",
+        "placeHolder": null,
+        "initialValue": "python:3.9",
+        "items": [
+            {"id": "run01", "label": "Go", "value": "golang"},
+            {"id": "run02", "label": "Java", "value": "java"},
+            {"id": "run03", "label": "NodeJs", "value": "nodejs"},
+            {"id": "run04", "label": "Python 3.7", "value": "python:3.7"},
+            {"id": "run05", "label": "Python 3.9", "value": "python:3.9"}
+        ],
+        "mandatory": true,
+        "modelGroup": "spec",
+        "model": "runtime",
+        "validations": null
+    },
+    {
+        "id": "04",
+        "type": "checkboxes-group",
+        "label": "Categories",
+        "placeHolder": null,
+        "initialValue": [],
+        "items": [
+            {"id": "cat01", "label": "Data Collection", "value": "collect"},
+            {"id": "cat02", "label": "Data Processing", "value": "process"},
+            {"id": "cat03", "label": "Analytics & Reporting", "value": "report"},
+            {"id": "cat04", "label": "Sorting, filtering, tagging", "value": "sort"}
+        ],
+        "mandatory": false,
+        "modelGroup": "metadata",
+        "model": "categories",
+        "validations": null
+    },
+    {
+        "id": "05",
+        "type": "text",
+        "label": "Service Name",
+        "placeHolder": "Name the service",
+        "initialValue": "",
+        "items": null,
+        "mandatory": true,
+        "modelGroup": "spec",
+        "model": "serviceName",
+        "validations": [
+            { "id": "reg01", "msg": "Valid characters are alphanumeric and hyphen", "regex": "^[A-Za-z0-9-]+$" },
+            { "id": "reg02", "msg": "Must start a letter", "regex": "^[A-Za-z].*$" },
+            { "id": "reg03", "msg": "Must end with alphanumeric and hyphen", "regex": "^.*[A-Za-z0-9-]$" },
+            { "id": "reg04", "msg": "Maximum length of 53 characters", "regex": "^.{1,53}$" }
+        ]
+    },
+    {
+        "id": "06",
+        "type": "checkboxes-group",
+        "label": "Permissions",
+        "placeHolder": null,
+        "initialValue": ["read"],
+        "items": [
+            {"id": "perm01", "label": "Read files", "value": "read"},
+            {"id": "perm02", "label": "Write files", "value": "write"},
+            {"id": "perm03", "label": "Execute files", "value": "execute"}
+        ],
+        "mandatory": true,
+        "modelGroup": "spec",
+        "model": "permissions",
+        "validations": null
+    }
+]
