@@ -22,7 +22,7 @@ export interface FieldConfig {
     mandatory: boolean;
     modelGroup: string;
     model: string;
-    validations: Rule[];
+    rules: Rule[];
 }
 
 export type ID = FieldConfig["id"];
@@ -36,9 +36,21 @@ export const validState = {
 type Keys = keyof typeof validState
 export type IsValidState = (typeof validState)[Keys];
 
-export interface FieldState {
-    value: FieldValue;
-    isValid: IsValidState;
-    validationResult: [];
+export interface ValidationsConfig {
+    id: FieldConfig["id"];
+    rules: FieldConfig["rules"];
+    mandatory: FieldConfig["mandatory"];
+    model: FieldConfig["model"];
+    modelGroup: FieldConfig["modelGroup"];
 }
 
+export interface ValidationsResult {
+    id: Rule["id"];
+    msg: Rule["msg"];
+    valid: boolean;
+}
+
+export interface ResultWithId {
+    id: ID;
+    result: ValidationsResult[];
+}

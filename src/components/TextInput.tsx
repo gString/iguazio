@@ -1,4 +1,4 @@
-import {ReactElement} from "react";
+import {ReactElement, useEffect, useRef} from "react";
 import {CheckSquare, XOctagon} from "react-feather";
 import {FieldConfig, IsValidState, validState} from "../types.ts";
 

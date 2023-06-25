@@ -8,7 +8,7 @@ import useControllerState from "../hooks/useControllerState.ts";
 
 export default function DropDownMenu({config}: { config: FieldConfig }) {
     const [isOpen, setIsOpen] = useState(false);
-    const { value, onValueChanged } = useControllerState(config)
+    const { value, onValueChanged } = useControllerState(config);
 
     const {id, label, items} = config;
 

@@ -1,22 +1,28 @@
-import {useCallback, useEffect, useRef, useState} from "react";
-import {FieldConfig, FieldValue, IsValidState, validState} from "../types.ts";
+import {useCallback, useEffect} from "react";
+import {FieldConfig, FieldValue, validState} from "../types.ts";
+import {useRecoilState} from "recoil";
+import {fieldValueStateAtom, inputValidationRulesAtom, validationResultAtom, validStateAtom} from "../utils/atoms.ts";
+
 
 export default function useControllerState(fieldConfig: FieldConfig) {
-    const [value, setValue] = useState<FieldValue>("");
-    const [isValid, setIsValid] = useState<IsValidState>(validState.NOT_SET);
-    const [validationResult, setValidationResult] = useState();
-    const validationRules = useRef<Partial<FieldConfig>>();
+    // const [validationResult, setValidationResult] = useState();
 
     const { id, initialValue, mandatory, validations, model, modelGroup } = fieldConfig;
+    const [isValid, setIsValid] = useRecoilState(validStateAtom(id));
+    const [value, setValue] = useRecoilState(fieldValueStateAtom(id));
+    const [validationRules, setValidationRules] = useRecoilState(inputValidationRulesAtom(id));
+    const [validationResult, setValidationResult] = useRecoilState(validationResultAtom(id));
 
-    useEffect(() => {
+        useEffect(() => {
         setValue(initialValue);
-        validationRules.current = {
+        // const valid = {rules: validations, mandatory};
+        setValidationRules({rules: validations, mandatory});
+        /*validationRules.current = {
             id, mandatory, validations, model, modelGroup
-        }
+        }*/
     }, []);
 
-    const onValueChanged = useCallback((newValue) => {
+    const onValueChanged = useCallback((newValue: FieldValue) => {
         setValue(newValue);
         if (isValid !== validState.NOT_SET) {
             setIsValid(validState.NOT_SET);
