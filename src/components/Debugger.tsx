@@ -9,9 +9,7 @@ export function Debugger() {
         }
     }, [snapshot]);
 
-    return (
-        null
-    );
+    return null;
 }
 
 export function DebugButton() {

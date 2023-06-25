@@ -10,8 +10,9 @@
     padding: 1rem;
     display: flex;
     flex-direction: column;
+    position: relative;
 }
-.invalid {
+.inputWrapper[data-invalid="true"] {
     border-color: brown;
 }
 @media screen and (min-width: 1100px) {
@@ -19,7 +20,6 @@
         min-width: 25vw;
     }
 }
-
 .labelText {
     color: green;
     display: block;
@@ -30,9 +30,83 @@
 .fullWidthControl {
     width: calc(100% - 1rem);
 }
-.mandatory {
-    /*vertical-align: super;*/
+/* end of common styles */
+
+
+.textBox {
+    resize: none;
+    width: 100%;
+    height: 100%;
 }
+
+.checkboxLabel {
+    color: green;
+    font-size: small;
+    font-weight: 400;
+    position: relative;
+    top: -2px;
+    left: 4px;
+}
+
+/* start: text input */
+.relativeWrapper {
+    position: relative;
+    margin-top: -2px;
+}
+.toggleListBtn {
+    position: absolute;
+    top: 6px;
+    right: 11px;
+    height: 16px;
+    width: 16px;
+    border-color: transparent;
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    opacity: .8;
+
+}
+.toggleListBtn:hover {
+    opacity: 1;
+}
+.toggleListBtn > * {
+    position: absolute;
+    top: -1px;
+    right: 0;
+}
+.checkIcon {
+    color: yellowgreen;
+}
+.xIcon {
+    color: crimson;
+}
+.ruleList {
+    position: absolute;
+    top: 48px;
+    right: 24px;
+    left: 16px;
+    list-style: none;
+    border-radius: 5px;
+    background-color: #121212;
+    border: 1px solid #666;
+    padding: 5px 0 10px 0;
+    z-index: 1;
+    font-size: 12px;
+
+
+}
+.ruleListItem {
+    margin-top: 5px;
+}
+.ruleListItem > * {
+    margin: 0 5px;
+    position: relative;
+    top: 3px;
+    opacity: .7;
+}
+
+/* start: drop down menu */
 .dropDownIcon {
     width: 20px;
     height: 20px;
@@ -43,7 +117,6 @@
     background-color: #666;
     border: 1px solid #666;
 }
-
 .dropDownButton {
     background-color: transparent;
     border: none;
@@ -93,17 +166,4 @@
     top: 6px;
     left: 2px;
     color: green;
-}
-.textBox {
-    resize: none;
-    width: 100%;
-    height: 100%;
-}
-.checkboxLabel {
-    color: green;
-    font-size: small;
-    font-weight: 400;
-    position: relative;
-    top: -2px;
-    left: 4px;
 }

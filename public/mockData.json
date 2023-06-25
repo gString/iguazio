@@ -9,7 +9,7 @@
         "mandatory": true,
         "modelGroup": "metadata",
         "model": "name",
-        "validations": [
+        "rules": [
             { "id": "reg01", "msg": "Valid characters are alphanumeric and hyphen", "regex": "^[A-Za-z0-9-]+$" },
             { "id": "reg02", "msg": "Must start and end with alphanumeric", "regex": "^[A-Za-z0-9].*[A-Za-z0-9]$" },
             { "id": "reg03", "msg": "Maximum length of 56 characters", "regex": "^.{1,56}$" }
@@ -25,7 +25,7 @@
         "mandatory": false,
         "modelGroup": "spec",
         "model": "description",
-        "validations": null
+        "rules": null
     },
     {
         "id": "03",
@@ -43,7 +43,7 @@
         "mandatory": true,
         "modelGroup": "spec",
         "model": "runtime",
-        "validations": null
+        "rules": null
     },
     {
         "id": "04",
@@ -60,7 +60,7 @@
         "mandatory": false,
         "modelGroup": "metadata",
         "model": "categories",
-        "validations": null
+        "rules": null
     },
     {
         "id": "05",
@@ -72,7 +72,7 @@
         "mandatory": true,
         "modelGroup": "spec",
         "model": "serviceName",
-        "validations": [
+        "rules": [
             { "id": "reg01", "msg": "Valid characters are alphanumeric and hyphen", "regex": "^[A-Za-z0-9-]+$" },
             { "id": "reg02", "msg": "Must start a letter", "regex": "^[A-Za-z].*$" },
             { "id": "reg03", "msg": "Must end with alphanumeric and hyphen", "regex": "^.*[A-Za-z0-9-]$" },
@@ -93,6 +93,6 @@
         "mandatory": true,
         "modelGroup": "spec",
         "model": "permissions",
-        "validations": null
+        "rules": null
     }
 ]

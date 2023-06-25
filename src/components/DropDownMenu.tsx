@@ -10,10 +10,9 @@ export default function DropDownMenu({config}: { config: FieldConfig }) {
     const [isOpen, setIsOpen] = useState(false);
     const { value, onValueChanged } = useControllerState(config);
 
-    const {id, label, items} = config;
+    const { label, items} = config;
 
-    const toggleOpen = (e: React.MouseEvent<HTMLElement> | MouseEvent) => {
-        e.preventDefault();
+    const toggleOpen = () => {
         setIsOpen(!isOpen)
     };
 

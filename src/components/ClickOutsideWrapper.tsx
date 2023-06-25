@@ -1,5 +1,4 @@
-
-import {useRef, useEffect, ReactElement} from 'react';
+import {useRef, useEffect, ReactElement, useCallback} from 'react';
 
 interface Props {
     children: ReactElement;
@@ -9,16 +8,13 @@ interface Props {
 export default function ClickOutsideWrapper({ children, onClick }: Props) {
     const wrapperRef = useRef<HTMLDivElement>(null);
 
-    const handleClickListener = (event: MouseEvent):void => {
-
+    const handleClickListener = useCallback((event: MouseEvent):void => {
         const clickedInside = (wrapperRef && wrapperRef.current!.contains(event.target as HTMLElement));
-
         if (clickedInside) return;
         else {
-            // event.preventDefault();
             onClick(event);
         }
-    }
+    }, [onClick])
 
 
     useEffect(() => {
@@ -27,7 +23,7 @@ export default function ClickOutsideWrapper({ children, onClick }: Props) {
         return () => {
             document.removeEventListener('mousedown', handleClickListener);
         };
-    }, []);
+    }, [handleClickListener]);
 
     return (
         <div ref={wrapperRef}>

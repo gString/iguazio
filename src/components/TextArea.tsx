@@ -6,7 +6,6 @@ import useControllerState from "../hooks/useControllerState.ts";
 export default function TextArea({config}: { config: FieldConfig }) {
     const { value, onValueChanged } = useControllerState(config);
     const {id, label, mandatory, placeHolder} = config;
-
     const changeHandler = (e: React.ChangeEvent<HTMLTextAreaElement>) => onValueChanged(e.target.value);
 
     return (
