@@ -16,6 +16,9 @@ export default function DropDownMenu({config}: { config: FieldConfig }) {
         setIsOpen(!isOpen)
     };
 
+    const closeMenu = () => setIsOpen(false);
+
+
     const onSelect = (newValue: Option['value']) => () => {
         if (newValue !== value) {
             toggleOpen();
@@ -27,7 +30,7 @@ export default function DropDownMenu({config}: { config: FieldConfig }) {
         <div className={styles.inputWrapper}>
             <h5 className={styles.labelText}>{label}</h5>
             <div className={styles.dropDownRef}>
-                <ClickOutsideWrapper onClick={toggleOpen}>
+                <ClickOutsideWrapper onClick={closeMenu}>
                     <>
                         <button onClick={toggleOpen}
                                 aria-label={label}

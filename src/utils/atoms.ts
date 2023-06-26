@@ -13,9 +13,12 @@ export const urlAtom = atom({
 export const formQuerySelector = selector({
     key: "form-configuration-query",
     get: async ({get}) => {
-        await new Promise(resolve => setTimeout(resolve, 100));
-        const response = await fetch(get(urlAtom)).then(data => data.json());
-        return response;
+        await new Promise(resolve => setTimeout(resolve, 900));
+        const response = await fetch(get(urlAtom));
+        if (response.error) {
+            throw response.error;
+        }
+        return await response.json();
     }
 })
 

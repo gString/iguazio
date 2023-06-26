@@ -9,17 +9,12 @@ import useValidation from "./hooks/useValidation.ts";
 import {formQuerySelector} from "./utils/atoms.ts";
 import './App.css'
 
-function App() {
-    const formConfig = useRecoilValue(formQuerySelector);
-    const {validate} = useValidation();
-
-    const onCreate = () => {
-        validate();
-    };
+function Form({formConfig}) {
+    const {validate: onCreate} = useValidation();
 
     return (
         <form onSubmit={e => e.preventDefault()} id="formFrame" noValidate>
-            {Boolean(formConfig.length) && formConfig.map((field: FieldConfig) => {
+            {formConfig.map((field: FieldConfig) => {
                 const {type, id} = field;
                 switch (type) {
                     case "text":
@@ -41,4 +36,13 @@ function App() {
     )
 }
 
-export default App
+function App() {
+    const formConfig = useRecoilValue(formQuerySelector);
+
+    return (
+            <Form formConfig={formConfig} />
+)
+}
+
+export default App;
+
