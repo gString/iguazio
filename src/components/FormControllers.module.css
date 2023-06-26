@@ -55,8 +55,8 @@
 }
 .toggleListBtn {
     position: absolute;
-    top: 6px;
-    right: 11px;
+    top: 40px;
+    right: 26px;
     height: 16px;
     width: 16px;
     border-color: transparent;
@@ -80,6 +80,7 @@
 }
 .xIcon {
     color: crimson;
+    top: -1.5px;
 }
 .ruleList {
     position: absolute;

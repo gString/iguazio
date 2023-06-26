@@ -25,6 +25,7 @@ export default function TextInput({config}: { config: FieldConfig }) {
     };
 
     const toggleOpen = () => setToggleRuleList(prevState => !prevState);
+    const closeFlyout = () => setToggleRuleList(false);
 
     return (
         <div className={styles.inputWrapper} data-invalid={isInvalid}>
@@ -32,31 +33,33 @@ export default function TextInput({config}: { config: FieldConfig }) {
                    htmlFor={id}>
                 {label}{mandatory && <span> *</span>}
             </label>
-            <div className={styles.relativeWrapper}>
-                <input className={styles.fullWidthControl}
-                       id={id}
-                       type="text"
-                       required={mandatory}
-                       placeholder={placeHolder}
-                       aria-required={mandatory}
-                       value={value}
-                       onChange={changeHandler}/>
-                {Boolean(validationResult.length) && (
-                    <button onClick={toggleOpen} className={styles.toggleListBtn} title="Click to see validations">
-                        {isInvalid ? <XSquare className={styles.xIcon} size={14}/> :
-                            <CheckSquare className={styles.checkIcon} size={14}/>}
-                    </button>)}
-            </div>
-            {Boolean(validationResult.length) && toggleRuleList && (
-                <ClickOutsideWrapper onClick={toggleOpen}>
-                <ul className={styles.ruleList}>
-                    {validationResult.map(({id, msg, valid}) =>
-                        (<li key={id} className={styles.ruleListItem}>
-                            {!valid ?
-                                <X className={styles.xIcon} size={14}/> :
-                                <Check className={styles.checkIcon} size={14}/>}
-                            {msg}</li>))}
-                </ul>
+            <input className={styles.fullWidthControl}
+                   id={id}
+                   type="text"
+                   required={mandatory}
+                   placeholder={placeHolder}
+                   aria-required={mandatory}
+                   value={value}
+                   onChange={changeHandler}/>
+            {Boolean(validationResult.length) && (
+                <ClickOutsideWrapper onClick={closeFlyout}>
+                    <>
+                        <button onClick={toggleOpen} className={styles.toggleListBtn} title="Click to see validations">
+                            {isInvalid ? <XSquare className={styles.xIcon} size={14}/> :
+                                <CheckSquare className={styles.checkIcon} size={14}/>}
+                        </button>
+                        {toggleRuleList && (
+                            <ul className={styles.ruleList}>
+                                {validationResult.map(({id, msg, valid}) =>
+                                    (<li key={id} className={styles.ruleListItem}>
+                                        {!valid ?
+                                            <X className={styles.xIcon} size={14}/> :
+                                            <Check className={styles.checkIcon} size={14}/>}
+                                        {msg}</li>)
+                                )}
+                            </ul>
+                        )}
+                    </>
                 </ClickOutsideWrapper>
             )}
         </div>
