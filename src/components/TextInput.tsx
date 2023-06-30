@@ -1,18 +1,15 @@
 import {useMemo, useState} from "react";
-import {useRecoilValue} from "recoil";
 import {XSquare, CheckSquare, Check, X} from "react-feather";
 import {FieldConfig} from "../types.ts";
 
 import useControllerState from "../hooks/useControllerState.ts";
-import {validationResultAtom} from "../utils/atoms.ts";
 import ClickOutsideWrapper from "./ClickOutsideWrapper.tsx";
 import styles from "./FormControllers.module.css";
 
 export default function TextInput({config}: { config: FieldConfig }) {
     const [toggleRuleList, setToggleRuleList] = useState(false);
-    const {value, onValueChanged} = useControllerState(config);
+    const {value, onValueChanged, validationResult} = useControllerState(config);
     const {id, label, placeHolder, mandatory} = config;
-    const validationResult = useRecoilValue(validationResultAtom(id));
 
     const isInvalid = useMemo(() => {
         if (validationResult?.length) {

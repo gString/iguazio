@@ -1,14 +1,11 @@
-import {useRecoilValue} from "recoil";
 import {FieldConfig, Option} from "../types.ts";
 
 import useControllerState from "../hooks/useControllerState.ts";
-import {validationResultAtom} from "../utils/atoms.ts";
 import styles from "./FormControllers.module.css";
 
 export default function CheckBoxesGroup({config}: { config: FieldConfig }) {
-    const { value, onValueChanged} = useControllerState(config);
-    const {id, label, items, mandatory} = config;
-    const validationResult = useRecoilValue(validationResultAtom(id));
+    const { value, onValueChanged, validationResult} = useControllerState(config);
+    const { label, items, mandatory} = config;
     const changeHandler = (itemValue: Option['value']) => () => {
         let _collectedValue;
         if (Array.isArray(value) && value.includes(itemValue)) {

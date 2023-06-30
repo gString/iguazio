@@ -20,6 +20,11 @@
         min-width: 25vw;
     }
 }
+@media screen and (max-width: 640px) {
+    .inputWrapper {
+        max-width: none;
+    }
+}
 .labelText {
     color: green;
     display: block;
@@ -122,6 +127,7 @@
     background-color: transparent;
     border: none;
     width: 100%;
+    max-width: 250px;
     margin-top: 3px;
     display: flex;
 }

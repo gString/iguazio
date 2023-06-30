@@ -9,7 +9,9 @@ import useValidation from "./hooks/useValidation.ts";
 import {formQuerySelector} from "./utils/atoms.ts";
 import './App.css'
 
-function Form({formConfig}) {
+// This should have been inside App - I seperated it here to trigger Suspense.
+// I see no value for a new file in this case.
+function Form({formConfig}:{formConfig: FieldConfig[]}) {
     const {validate: onCreate} = useValidation();
 
     return (
@@ -39,9 +41,7 @@ function Form({formConfig}) {
 function App() {
     const formConfig = useRecoilValue(formQuerySelector);
 
-    return (
-            <Form formConfig={formConfig} />
-)
+    return (<Form formConfig={formConfig} />)
 }
 
 export default App;
