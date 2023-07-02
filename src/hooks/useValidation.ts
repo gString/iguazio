@@ -33,11 +33,10 @@ export default function useValidation() {
     // First step for user triggered validation - collecting current values
     const takeSnapshot = useRecoilCallback(
         ({snapshot}) => () => {
-            const values = idsRef.current.map(id => {
+            fieldsValues.current = idsRef.current.map(id => {
                 const value = snapshot.getLoadable(fieldValueStateAtom(id)).contents;
                 return { id, value };
             })
-            fieldsValues.current = values;
             validateNow();
     });
 
@@ -88,14 +87,18 @@ export default function useValidation() {
     }
 
     // setting the output
-    type OutPut = Record<string, string | Record<string, string>>;
     const setOutput = () => {
-        const output: OutPut = {};
+        const output: {[key: string]: { [key: string]: string }} = {};
         fieldsValues.current.forEach(({value, id}) => {
             if (value.length) {
                 const {model, modelGroup} = validationRef.current.get(id) as ValidationsConfig;
+                // ESLint does not like it as there are edge cases that make this not to work,
+                // but using Object.hasOwnProperty have its own edge cases
                 if (!output.hasOwnProperty(modelGroup)) {
                     output[modelGroup] = {};
+                }
+                if (Array.isArray(value)) {
+                    value = value.join(", ");
                 }
                 output[modelGroup][model] = value;
             }

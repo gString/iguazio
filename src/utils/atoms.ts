@@ -32,6 +32,8 @@ export const validationResultAtom = atomFamily<ValidationsResult[], ID>({
 
 export const allValidationSelector = selector<ResultWithId[]>({
     key: "total-results",
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore - get is part of the selector interface did not find a way around it yet (ToDo: fix!)
     get: null,
     set: ({set, get}, newValue) => {
         if (newValue instanceof DefaultValue) return;
@@ -53,8 +55,10 @@ export const validatedFlag = atom({
 
 export const changeFieldValue = selectorFamily<FieldValue, ID>({
     key: "change-field-value",
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore - get is part of the selector interface did not find a way around it yet (ToDo: fix!)
     get: null,
-    set: (id) => ({ set}, newValue) => {
+    set: (id) => ({set}, newValue) => {
         set(fieldValueStateAtom(id), newValue);
         set(validatedFlag, true);
         set(formValidationState, validState.NOT_SET);
